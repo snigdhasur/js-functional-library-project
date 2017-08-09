@@ -169,3 +169,14 @@ function last(array, n = 1) {
 function compact(array){
 	return filter(array, x => x)
 }
+
+
+function uniq(array, isSorted = false, iteratee = null){
+	resultArray = []
+	for(i=0; i < array.length; i++){
+		if (!resultArray.includes(array[i])){
+			resultArray.push(array[i])
+		}
+	}
+	return resultArray
+}
