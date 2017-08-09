@@ -143,3 +143,29 @@ function size(list) {
 		return Object.keys(list).length
     }
 }
+
+function first(array, n = 1) {
+	newArray = []
+	if(n>1){
+		for(i = 0; i < n; i++){
+			newArray.push(array[i])
+		}
+		return newArray
+	} else {
+		return array[0]
+	}
+}
+
+function last(array, n = 1) {
+	if(n>1) {
+		return array.slice(-n)
+		}
+	 else {
+		return array.slice(-1)[0]
+	}
+}
+
+
+function compact(array){
+	return filter(array, x => x)
+}
