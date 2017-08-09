@@ -102,7 +102,7 @@ function compareNumbers(a, b) {
 
 
 
-
+// iteratee is key for an array of objects; it is function/transformation for array of strings or numbers
 function sortBy(list, iteratee) {	
 	if (typeof list[0] === "number" || typeof list[0] === "string") {
 		newArray = map(list,iteratee)
@@ -110,21 +110,36 @@ function sortBy(list, iteratee) {
 		return newArray
 	} 
 	else {
+		nameArray = []
 		for(i=0; i < list.length; i++){
-			if(Object.keys(list[i])) === iteratee 
-		}
+		  
+  		for(let key in list[i]) {
+  			if(key === iteratee) {
+  			nameArray.push(list[i][key])
+  		   }
+  		  }
+  	     }
 
-
-		newObject = {}
-		for(let key in object) {
-			if(callback(object[key])) {
-			Object.assign(newObject, {[key]: object[key]})
+  	    resultArray = []
+		sortedArray = nameArray.sort(compareNumbers())
+		sortedArray.forEach(function findOldObject(element){
+		    for(i = 0; i < list.length; i++){
+			    for(let key in list[i]) {
+			  			if(list[i][key] === element) {
+			  			resultArray.push(list[i])
+			  		   }
+			    }
 		    }
-	    }
-	    return newObject
-    }
+		})
+		return resultArray
+	}
 }
 
-
-
-
+function size(list) {	
+	if (Array.isArray(list)) {
+		return list.length 
+	} 
+	else {
+		return Object.keys(list).length
+    }
+}
