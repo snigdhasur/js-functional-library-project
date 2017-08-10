@@ -171,7 +171,7 @@ function compact(array){
 }
 
 
-function uniq2(array, isSorted = false, iteratee = null){
+function uniq(array, isSorted = false, iteratee = null){
    resultArray = []
 
 	if(isSorted === true){
@@ -190,4 +190,23 @@ function uniq2(array, isSorted = false, iteratee = null){
 	    }
 	}
 	return resultArray
+}
+
+function keys(object){
+  resultArray = []
+
+  for(let key in object) {
+	resultArray.push(key)
+  }
+  return resultArray
+}
+
+function values(object){
+	resultArray = []
+
+  	for(let key in object) {
+	resultArray.push(object[key])
+  	}
+
+  	return resultArray
 }
