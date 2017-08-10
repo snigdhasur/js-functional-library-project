@@ -171,12 +171,23 @@ function compact(array){
 }
 
 
-function uniq(array, isSorted = false, iteratee = null){
-	resultArray = []
-	for(i=0; i < array.length; i++){
-		if (!resultArray.includes(array[i])){
+function uniq2(array, isSorted = false, iteratee = null){
+   resultArray = []
+
+	if(isSorted === true){
+		for(i=0; i < array.length; i++){
+		if (resultArray.slice(-1) != array[i]){
 			resultArray.push(array[i])
 		}
+	}
+	  
+	} 
+	else {
+		for(i=0; i < array.length; i++){
+			if (!resultArray.includes(array[i])){
+				resultArray.push(array[i])
+			}
+	    }
 	}
 	return resultArray
 }
