@@ -1,4 +1,9 @@
-function each(list, callback) {
+fi = 
+(function(){
+  
+return {
+each: 
+ function(list, callback) {
 	if (Array.isArray(list)) {
 		for(let i = 0; i < list.length; i++){
 		callback(list[i])
@@ -10,9 +15,10 @@ function each(list, callback) {
 		}
 	}
 	return list
-}
+},
 
-function map(list, callback) {	
+map: 
+function(list, callback) {	
 	if (Array.isArray(list)) {
 		newArray = []
 		for(let i = 0; i < list.length; i++){
@@ -27,10 +33,11 @@ function map(list, callback) {
 		}
 		return newObject	
 	}
-}
+},
 
 // the callback needs to be a function that takes two arguments and combines them, such as sum or concatenate
-function reduce(list, callback) {	
+reduce:
+function(list, callback) {	
 	if (Array.isArray(list)) {
 		result = list[0]
 		for(let i = 1; i < list.length; i++){
@@ -44,11 +51,12 @@ function reduce(list, callback) {
 		}
 	}
   return result	
-}
+},
 
 
 // the callback needs to be a function that is a boolean
-function find(list, callback) {	
+find:
+function (list, callback) {	
 	if (Array.isArray(list)) {
 		for(let i = 0; i < list.length; i++){
 				if(callback(list[i])){
@@ -63,12 +71,12 @@ function find(list, callback) {
 		    }
 	    }
     }
-}
-
+},
 
 
 // the callback needs to be a function that is a boolean
-function filter(list, callback) {	
+filter:
+function(list, callback) {	
 	if (Array.isArray(list)) {
 		newArray = []
 		for(let i = 0; i < list.length; i++){
@@ -87,26 +95,27 @@ function filter(list, callback) {
 	    }
 	    return newObject
     }
-}
+},
+
+// the iteratee is a (math) transformation for an array and the PROPERTY for object
 
 
-// the iteratee is a (math) transformation for an array and the PROPERTY for an object
-function compareNumbers(a, b) {
+
+// iteratee is key for an array of objects; it is function/transformation for array of strings or numbers
+sortBy: 
+function(list, iteratee) {	
+  function compareNumbers(a, b) {
   if(typeof a === "number") {
     return a - b;
   }
   else {
     return null 
   }
-}
-
-
-
-// iteratee is key for an array of objects; it is function/transformation for array of strings or numbers
-function sortBy(list, iteratee) {	
+ }
+  
 	if (typeof list[0] === "number" || typeof list[0] === "string") {
-		newArray = map(list,iteratee)
-		newArray.sort(compareNumbers())
+		newArray = fi.map(list,iteratee)
+		newArray.sort(compareNumbers)
 		return newArray
 	} 
 	else {
@@ -133,18 +142,20 @@ function sortBy(list, iteratee) {
 		})
 		return resultArray
 	}
-}
+},
 
-function size(list) {	
+size: 
+function(list) {	
 	if (Array.isArray(list)) {
 		return list.length 
 	} 
 	else {
 		return Object.keys(list).length
     }
-}
+},
 
-function first(array, n = 1) {
+first: 
+function(array, n = 1) {
 	newArray = []
 	if(n>1){
 		for(i = 0; i < n; i++){
@@ -154,24 +165,27 @@ function first(array, n = 1) {
 	} else {
 		return array[0]
 	}
-}
+},
 
-function last(array, n = 1) {
+last: 
+function(array, n = 1) {
 	if(n>1) {
 		return array.slice(-n)
 		}
 	 else {
 		return array.slice(-1)[0]
 	}
-}
+},
 
 
-function compact(array){
+compact: 
+function(array){
 	return filter(array, x => x)
-}
+},
 
 
-function uniq(array, isSorted = false, iteratee = null){
+uniq:
+function(array, isSorted = false, iteratee = null){
    resultArray = []
 
 	if(isSorted === true && iteratee == null){
@@ -190,7 +204,7 @@ function uniq(array, isSorted = false, iteratee = null){
 	}
 	else if(isSorted === false && iteratee != null) {
 		for(i=0; i < array.length; i++){
-			if (!resultArray.includes(iteratee(array[i])){
+			if (!resultArray.includes(iteratee(array[i]))){
 				resultArray.push(iteratee(array[i]))
 			}
 	   }
@@ -203,18 +217,20 @@ function uniq(array, isSorted = false, iteratee = null){
 	    }
 	}
 	return resultArray
-}
+},
 
-function keys(object){
+keys:
+function(object){
   resultArray = []
 
   for(let key in object) {
 	resultArray.push(key)
   }
   return resultArray
-}
+},
 
-function values(object){
+values:
+function(object){
 	resultArray = []
 
   	for(let key in object) {
@@ -223,3 +239,9 @@ function values(object){
 
   	return resultArray
 }
+
+
+
+}
+}
+)()
