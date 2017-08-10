@@ -174,14 +174,27 @@ function compact(array){
 function uniq(array, isSorted = false, iteratee = null){
    resultArray = []
 
-	if(isSorted === true){
+	if(isSorted === true && iteratee == null){
 		for(i=0; i < array.length; i++){
-		if (resultArray.slice(-1) != array[i]){
-			resultArray.push(array[i])
-		}
+			if (resultArray.slice(-1) != array[i]){
+				resultArray.push(array[i])
+			}
+	   }
 	}
-	  
-	} 
+	else if(isSorted === true && iteratee != null) {
+		for(i=0; i < array.length; i++){
+			if (resultArray.slice(-1) != iteratee(array[i])){
+				resultArray.push(iteratee(array[i]))
+			}
+	   }
+	}
+	else if(isSorted === false && iteratee != null) {
+		for(i=0; i < array.length; i++){
+			if (!resultArray.includes(iteratee(array[i])){
+				resultArray.push(iteratee(array[i]))
+			}
+	   }
+	}
 	else {
 		for(i=0; i < array.length; i++){
 			if (!resultArray.includes(array[i])){
