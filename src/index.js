@@ -238,10 +238,21 @@ function(object){
   	}
 
   	return resultArray
+},
+
+functions:
+function(object){
+  resultArray = []
+  for(let key in object){ 
+    if(typeof object[key] === 'function'){
+        resultArray.push(key)
+      }
+    }
+    return resultArray
+  }
+
+  
+}
 }
 
-
-
-}
-}
 )()
